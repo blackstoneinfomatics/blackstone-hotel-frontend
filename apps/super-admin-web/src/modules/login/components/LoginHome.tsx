@@ -6,20 +6,14 @@ import { useLogin } from "../hooks/useLogin";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Eye, EyeOff } from "lucide-react";
+import { Building2,Lock, Eye, EyeOff, Mail, Hotel, ShieldCheck } from "lucide-react";
 import Image from "next/image";
-import { Hanken_Grotesk } from "next/font/google";
 import { FcGoogle } from "react-icons/fc";
 
-const hanken = Hanken_Grotesk({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-});
 
 export default function LoginHome() {
   const [showPassword, setShowPassword] = useState(false);
-  const { login, loading } = useLogin();
-
+   const {mutateAsync: login, isPending} = useLogin();
   const router = useRouter();
 
   const [email, setEmail] = useState("");
@@ -31,7 +25,7 @@ export default function LoginHome() {
     e.preventDefault();
 
     try {
-      await login(email, password);
+      await login({email, password});
 
       router.push("/dashboard");
     } catch (error) {
@@ -41,13 +35,13 @@ export default function LoginHome() {
   };
 
   return (
-<main className="min-h-screen bg-slate-900">
-  <div className="grid min-h-screen lg:grid-cols-2">
+<main className="h-screen w-full overflow-hidden bg-slate-900">
+  <div className="grid h-full w-full lg:grid-cols-2">
 
     {/* Left Image */}
     <div className="relative hidden lg:block">
       <Image
-        src="/assests/image2.png"
+        src="/assests/login1.png"
         alt="Hotel"
         fill
         priority
@@ -58,142 +52,232 @@ export default function LoginHome() {
     </div>
 
     {/* Right Side */}
-<div className="relative flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 p-6">
-        <div
-    className={`${hanken.className}
-      w-full
-      max-w-[520px]
+{/* Right Side */}
+<div className="flex h-full items-center justify-center bg-gradient-to-br from-slate-100 via-white to-orange-50 dark:from-[#0B1220] dark:via-[#101827] dark:to-[#1B2434] px-6 py-6">
+
+  {/* Outer Glow */}
+  <div className="relative w-full max-w-md">
+
+
+    {/* Card */}
+    <div
+      className="
+      relative
+      overflow-hidden
       rounded-[32px]
-      border border-white/20
-      bg-white/10
-      p-10
-      shadow-2xl
-      backdrop-blur-3xl`}
-  >
+      border
+      border-white/20
+      bg-white
+      dark:bg-[#111827]/95
+      shadow-[0_20px_70px_rgba(0,0,0,0.15)]
+      dark:shadow-[0_20px_80px_rgba(0,0,0,0.45)]
+      backdrop-blur-2xl
+      "
+    >
+
+      <div className="absolute -right-30 -top-10 h-52 w-52 rounded-full bg-orange-200/20 blur-3xl"></div>
+<div className="absolute -bottom-10 -left-30 h-52 w-52 rounded-full bg-amber-200/20 blur-3xl"></div>
+
+      {/* Decorative Circle */}
+
+
+      <div className="relative px-8 py-8">
+
         {/* Heading */}
 
-        <div className="mb-8 text-center sm:mb-10">
-          <h2 className="text-3xl font-bold text-white">
-            Blackstone Hotel
-          </h2>
+        <div className="mt-6 text-center">
 
-          <p className="mt-2 text-sm text-white/70 sm:text-base">
-            Sign in to your admin account
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
+            Welcome Back
+          </h1>
+
+          <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+            Sign in to access your Hotel Dashboard
           </p>
+
         </div>
+
+        {/* Form */}
 
         <form
           onSubmit={handleLogin}
-          autoComplete="on"
-          className="space-y-6"
+          className="mt-8 space-y-5"
         >
+
           {/* Email */}
 
           <div>
-            <label className="mb-2 block text-sm font-medium text-white sm:text-base">
+
+            <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
               Email Address
             </label>
 
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              className="h-14 rounded-xl border-0 bg-white text-black placeholder:text-gray-500"
-            />
+            <div className="relative">
+
+              <Mail className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-orange-500" />
+
+              <Input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter email"
+                className="
+                h-14
+                rounded-2xl
+                border
+                border-slate-200
+                dark:border-slate-700
+                bg-slate-50
+                dark:bg-slate-900
+                pl-12
+                text-slate-900
+                dark:text-white
+                placeholder:text-slate-400
+                focus:border-orange-500
+                focus:ring-4
+                focus:ring-orange-500/20
+                "
+              />
+
+            </div>
+
           </div>
 
           {/* Password */}
 
           <div>
-            <label className="mb-2 block text-sm font-medium text-white sm:text-base">
+
+            <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
               Password
             </label>
 
             <div className="relative">
+
+              <Lock className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-orange-500" />
+
               <Input
-                id="password"
-                name="password"
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your password"
-                className="h-14 rounded-xl border-0 bg-white pr-12 text-black placeholder:text-gray-500"
+                placeholder="Enter Password"
+                className="
+                h-14
+                rounded-2xl
+                border
+                border-slate-200
+                dark:border-slate-700
+                bg-slate-50
+                dark:bg-slate-900
+                pl-12
+                pr-12
+                text-slate-900
+                dark:text-white
+                placeholder:text-slate-400
+                focus:border-orange-500
+                focus:ring-4
+                focus:ring-orange-500/20
+                "
               />
 
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500"
               >
-                {showPassword ? (
-                  <EyeOff className="h-5 w-5" />
-                ) : (
-                  <Eye className="h-5 w-5" />
-                )}
+                {showPassword ? <EyeOff size={20}/> : <Eye size={20}/>}
               </button>
+
             </div>
+
           </div>
 
           {/* Remember */}
 
-          <div className="flex flex-col gap-3 text-white sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-2">
-              <Checkbox id="remember-me" />
+          <div className="flex items-center justify-between">
 
-              <label
-                htmlFor="remember-me"
-                className="text-sm sm:text-base"
-              >
+            <div className="flex items-center gap-2">
+
+              <Checkbox />
+
+              <span className="text-sm text-slate-600 dark:text-slate-400">
                 Remember me
-              </label>
+              </span>
+
             </div>
 
             <button
               type="button"
-              className="text-left text-sm text-[#ff8c00] hover:underline sm:text-right"
+              className="text-sm font-medium text-orange-500 hover:text-orange-600"
             >
               Forgot Password?
             </button>
+
           </div>
 
           {/* Login */}
 
           <Button
-            type="submit"
-            disabled={loading}
-            className="h-14 w-full rounded-xl bg-[#ff8c00] text-base text-white transition hover:bg-emerald-600 sm:text-lg"
+            className="
+            h-14
+            w-full
+            rounded-2xl
+            bg-gradient-to-r
+            from-orange-500
+            to-amber-500
+            text-lg
+            font-semibold
+            transition-all
+            duration-300
+            hover:scale-[1.02]
+            hover:shadow-xl
+            hover:shadow-orange-500/30
+            "
           >
-            {loading ? "Signing In..." : "Sign In"}
+            {isPending ? "Signing In..." : "Sign In"}
           </Button>
 
           {/* Divider */}
 
           <div className="flex items-center gap-3">
-            <div className="h-px flex-1 bg-white/20"></div>
 
-            <span className="whitespace-nowrap text-xs text-white/70 sm:text-sm">
-              Or continue with
+            <div className="h-px flex-1 bg-slate-300 dark:bg-slate-700" />
+
+            <span className="text-xs text-slate-500">
+              OR
             </span>
 
-            <div className="h-px flex-1 bg-white/20"></div>
+            <div className="h-px flex-1 bg-slate-300 dark:bg-slate-700" />
+
           </div>
 
           {/* Google */}
 
           <Button
-            type="button"
             variant="outline"
-            className="h-14 w-full border-white/30 bg-white/10 text-white hover:bg-white/20"
+            className="
+            h-14
+            w-full
+            rounded-2xl
+            border-slate-300
+            dark:border-slate-700
+            bg-white
+            dark:bg-slate-900
+            hover:bg-slate-100
+            dark:hover:bg-slate-800
+            "
           >
-            <FcGoogle className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
+            <FcGoogle className="mr-3 h-6 w-6" />
             Continue with Google
           </Button>
+
         </form>
+
       </div>
+
     </div>
+
+  </div>
+
+</div>
   </div>
 </main>
   );
