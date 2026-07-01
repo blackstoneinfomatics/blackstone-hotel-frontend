@@ -6,18 +6,40 @@ export type Platform =
   | "macos"
   | "linux";
 
-export const getPlatform =() : Platform =>{
-  if (typeof window === "undefined") {
-    return "web";
-  }
-
+export const getPlatform = (): Platform => {
   const ua = navigator.userAgent.toLowerCase();
 
-  if (ua.includes("android")) return "android";
-  if (ua.includes("iphone") || ua.includes("ipad")) return "ios";
-  if (ua.includes("windows")) return "windows";
-  if (ua.includes("mac os") || ua.includes("macintosh")) return "macos";
-  if (ua.includes("linux")) return "linux";
+  console.log("UA:", ua);
+
+  if (ua.includes("android")) {
+    console.log("Matched Android");
+    return "android";
+  }
+
+  if (ua.includes("iphone")) {
+    console.log("Matched iPhone");
+    return "ios";
+  }
+
+  if (ua.includes("ipad")) {
+    console.log("Matched iPad");
+    return "ios";
+  }
+
+  if (ua.includes("windows")) {
+    console.log("Matched Windows");
+    return "windows";
+  }
+
+  if (ua.includes("mac os") || ua.includes("macintosh")) {
+    console.log("Matched macOS");
+    return "macos";
+  }
+
+  if (ua.includes("linux")) {
+    console.log("Matched Linux");
+    return "linux";
+  }
 
   return "web";
-}
+};

@@ -2,8 +2,7 @@ import "@/lib/api";
 import type { Metadata } from "next";
 import { Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
-import QueryProvider from "@/providers/QueryProvider";
-
+import {AppProvider} from "@/providers/AppProvider";
 const hanken = Hanken_Grotesk({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -26,9 +25,9 @@ export default function RootLayout({
       className={`${hanken.variable} h-full antialiased`}
     >
       <body className={`${hanken.className} min-h-screen w-full overflow-x-hidden bg-background antialiased`}>
-        <QueryProvider>
+        <AppProvider>
           {children}
-        </QueryProvider>
+        </AppProvider>
       </body>
     </html>
   );

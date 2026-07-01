@@ -31,7 +31,11 @@ export class AuthService {
   }
 
   async refresh() {
-    const { data } = await this.authApi.refresh();
+      console.log("📞 AuthService.refresh()");
+
+    const { data } = await this.authApi.refresh({
+      platform: getPlatform(),
+    });
 
     return data;
   }

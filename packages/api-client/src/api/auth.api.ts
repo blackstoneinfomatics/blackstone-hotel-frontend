@@ -18,10 +18,15 @@ export class AuthApi {
     );
   }
 
-  refresh() {
+  refresh(payload?: { platform: string }) {
+          console.log("📞 AuthAPi.refresh()");
+          console.log("📞 AuthAPi.refresh() payload", payload);
     return this.client.api.post(
       "/authentication/v1/refresh",
-      {}
+      payload || {},
+        {
+        skipRefresh: true,
+      }
     );
   }
 }
