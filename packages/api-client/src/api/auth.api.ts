@@ -14,7 +14,10 @@ export class AuthApi {
   login(payload: LoginRequest) {
     return this.client.api.post(
       "/authentication/v1/login",
-      payload
+      payload,
+      {
+      skipRefresh: true,
+    }
     );
   }
 

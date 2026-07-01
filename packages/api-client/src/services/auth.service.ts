@@ -24,6 +24,7 @@ export class AuthService {
       appVersion: this.client.options.appVersion,
     };
     
+  console.count("LOGIN API CALLED");
 
     const { data } = await this.authApi.login(request);
 

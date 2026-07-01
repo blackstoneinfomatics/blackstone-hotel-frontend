@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import {AppProvider} from "@/providers/AppProvider";
+import { Toaster } from "sonner";
+
 const hanken = Hanken_Grotesk({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -25,6 +27,23 @@ export default function RootLayout({
       className={`${hanken.variable} h-full antialiased`}
     >
       <body className={`${hanken.className} min-h-screen w-full overflow-x-hidden bg-background antialiased`}>
+
+<Toaster
+  position="top-right"
+  richColors
+  closeButton
+  expand
+  visibleToasts={4}
+  gap={12}
+  toastOptions={{
+    duration: 4000,
+    className:
+      "!rounded-2xl !border !border-slate-200 dark:!border-slate-700 !bg-white dark:!bg-slate-900 !shadow-2xl !p-4",
+    style: {
+      fontSize: "14px",
+    },
+  }}
+/>
         <AppProvider>
           {children}
         </AppProvider>
