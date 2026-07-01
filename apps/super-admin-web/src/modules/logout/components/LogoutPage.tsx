@@ -5,18 +5,28 @@ import { ArrowLeft, ShieldCheck } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
+import { useLogout } from "../hooks/useLogout";
 
 export default function LogoutPage() {
   const router = useRouter();
   const [isLoggedOut, setIsLoggedOut] = useState(false);
+const { mutateAsync: logout, isPending } = useLogout();
 
-  const handleLogout = () => {
-    setIsLoggedOut(true);
+const handleLogout = () => {
+  logout(undefined, {
+    onSuccess: () => {
+  
+      setIsLoggedOut(true);
 
-    setTimeout(() => {
-      router.push("/login");
-    }, 4500);
-  };
+      setTimeout(() => {
+        router.replace("/login");
+      }, 4500);
+    },
+    onError: (error) => {
+      console.error("Logout failed:", error);
+    },
+  });
+};
 
   return (
     <main>
@@ -113,15 +123,19 @@ export default function LogoutPage() {
                 )}
               </div>
 
-              <Button
-                onClick={handleLogout}
-                disabled={isLoggedOut}
-                className="mt-8 h-14 w-full rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 text-base font-semibold text-white hover:from-orange-600 hover:to-amber-600 disabled:opacity-100"
-              >
-                <ArrowLeft className="mr-2 h-5 w-5" />
+             <Button
+  onClick={handleLogout}
+  disabled={isPending || isLoggedOut}
+  className="mt-8 h-14 w-full rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 text-base font-semibold text-white hover:from-orange-600 hover:to-amber-600 disabled:opacity-100"
+>
+  <ArrowLeft className="mr-2 h-5 w-5" />
 
-                {isLoggedOut ? "Redirecting..." : "Logout"}
-              </Button>
+  {isPending
+    ? "Logging out..."
+    : isLoggedOut
+    ? "Redirecting..."
+    : "Logout"}
+</Button>
 
               <p className="mt-6 text-center text-sm text-slate-500">
                 Thank you for choosing{" "}

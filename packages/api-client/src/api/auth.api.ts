@@ -21,6 +21,10 @@ export class AuthApi {
     );
   }
 
+   logout() {
+  return this.client.api.post("/authentication/v1/logout", {});
+}
+
   refresh(payload?: { platform: string }) {
           console.log("📞 AuthAPi.refresh()");
           console.log("📞 AuthAPi.refresh() payload", payload);

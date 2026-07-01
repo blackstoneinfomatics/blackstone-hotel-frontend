@@ -31,6 +31,13 @@ export class AuthService {
     return data;
   }
 
+      // ✅ Logout
+  async logout() {
+    const { data } = await this.authApi.logout();
+
+    return data;
+  }
+
   async refresh() {
       console.log("📞 AuthService.refresh()");
 

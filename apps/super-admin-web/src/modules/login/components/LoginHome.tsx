@@ -6,7 +6,7 @@ import { useLogin } from "../hooks/useLogin";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Building2,Lock, Eye, EyeOff, Mail, Hotel, ShieldCheck } from "lucide-react";
+import { Lock, Eye, EyeOff, Mail } from "lucide-react";
 import Image from "next/image";
 import { FcGoogle } from "react-icons/fc";
 
@@ -49,142 +49,141 @@ export default function LoginHome() {
       />
 
       <div className="absolute inset-0 bg-black/20" />
-    </div>
+      </div>
 
-    {/* Right Side */}
-{/* Right Side */}
-<div className="flex h-full items-center justify-center bg-gradient-to-br from-slate-100 via-white to-orange-50 dark:from-[#0B1220] dark:via-[#101827] dark:to-[#1B2434] px-6 py-6">
+                  {/* Right Side */}
 
-  {/* Outer Glow */}
-  <div className="relative w-full max-w-md">
+        <div className="flex h-full items-center justify-center bg-gradient-to-br from-slate-100 via-white to-orange-50 dark:from-[#0B1220] dark:via-[#101827] dark:to-[#1B2434] px-6 py-6">
 
-
-    {/* Card */}
-    <div
-      className="
-      relative
-      overflow-hidden
-      rounded-[32px]
-      border
-      border-white/20
-      bg-white
-      dark:bg-[#111827]/95
-      shadow-[0_20px_70px_rgba(0,0,0,0.15)]
-      dark:shadow-[0_20px_80px_rgba(0,0,0,0.45)]
-      backdrop-blur-2xl
-      "
-    >
-
-      <div className="absolute -right-30 -top-10 h-52 w-52 rounded-full bg-orange-200/20 blur-3xl"></div>
-<div className="absolute -bottom-10 -left-30 h-52 w-52 rounded-full bg-amber-200/20 blur-3xl"></div>
-
-      {/* Decorative Circle */}
+                  {/* Outer Glow */}
+          <div className="relative w-full max-w-md">
 
 
-      <div className="relative px-8 py-8">
+                    {/* Card */}
+            <div
+              className="
+              relative
+              overflow-hidden
+              rounded-[32px]
+              border
+              border-white/20
+              bg-white
+              dark:bg-[#111827]/95
+              shadow-[0_20px_70px_rgba(0,0,0,0.15)]
+              dark:shadow-[0_20px_80px_rgba(0,0,0,0.45)]
+              backdrop-blur-2xl
+            "
+            >
 
-        {/* Heading */}
+              <div className="absolute -right-30 -top-10 h-52 w-52 rounded-full bg-orange-200/20 blur-3xl"></div>
+                <div className="absolute -bottom-10 -left-30 h-52 w-52 rounded-full bg-amber-200/20 blur-3xl"></div>
 
-        <div className="mt-6 text-center">
+                          {/* Decorative Circle */}
 
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
-            Welcome Back
-          </h1>
+                  <div className="relative px-8 py-8">
 
-          <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-            Sign in to access your Hotel Dashboard
-          </p>
+                          {/* Heading */}
 
-        </div>
+                    <div className="mt-6 text-center">
 
-        {/* Form */}
+                      <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
+                            Welcome Back
+                      </h1>
 
-        <form
-          onSubmit={handleLogin}
-          className="mt-8 space-y-5"
-        >
+                      <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                            Sign in to access your Hotel Dashboard
+                      </p>
 
-          {/* Email */}
+                    </div>
 
-          <div>
+                                  {/* Form */}
 
-            <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
-              Email Address
-            </label>
+                    <form
+                      onSubmit={handleLogin}
+                      className="mt-8 space-y-5"
+                    >
 
-            <div className="relative">
+                                  {/* Email */}
 
-              <Mail className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-orange-500" />
+                    <div>
 
-              <Input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter email"
-                className="
-                h-14
-                rounded-2xl
-                border
-                border-slate-200
-                dark:border-slate-700
-                bg-slate-50
-                dark:bg-slate-900
-                pl-12
-                text-slate-900
-                dark:text-white
-                placeholder:text-slate-400
-                focus:border-orange-500
-                focus:ring-4
-                focus:ring-orange-500/20
-                "
-              />
+                      <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                      Email Address
+                    </label>
 
-            </div>
+                    <div className="relative">
 
-          </div>
+                      <Mail className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-orange-500" />
 
-          {/* Password */}
+                      <Input
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter email"
+                        className="
+                        h-14
+                        rounded-2xl
+                        border
+                        border-slate-200
+                        dark:border-slate-700
+                        bg-slate-50
+                        dark:bg-slate-900
+                        pl-12
+                        text-slate-900
+                        dark:text-white
+                        placeholder:text-slate-400
+                        focus:border-orange-500
+                        focus:ring-4
+                        focus:ring-orange-500/20
+                        "
+                      />
 
-          <div>
+                    </div>
 
-            <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
-              Password
-            </label>
+                  </div>
 
-            <div className="relative">
+                               {/* Password */}
 
-              <Lock className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-orange-500" />
+                  <div>
 
-              <Input
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter Password"
-                className="
-                h-14
-                rounded-2xl
-                border
-                border-slate-200
-                dark:border-slate-700
-                bg-slate-50
-                dark:bg-slate-900
-                pl-12
-                pr-12
-                text-slate-900
-                dark:text-white
-                placeholder:text-slate-400
-                focus:border-orange-500
-                focus:ring-4
-                focus:ring-orange-500/20
-                "
-              />
+                    <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                        Password
+                    </label>
 
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500"
-              >
-                {showPassword ? <EyeOff size={20}/> : <Eye size={20}/>}
-              </button>
+                    <div className="relative">
+
+                      <Lock className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-orange-500" />
+
+                        <Input
+                          type={showPassword ? "text" : "password"}
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          placeholder="Enter Password"
+                          className="
+                          h-14
+                          rounded-2xl
+                          border
+                          border-slate-200
+                          dark:border-slate-700
+                          bg-slate-50
+                          dark:bg-slate-900
+                          pl-12
+                          pr-12
+                          text-slate-900
+                          dark:text-white
+                          placeholder:text-slate-400
+                          focus:border-orange-500
+                          focus:ring-4
+                          focus:ring-orange-500/20
+                          "
+                        />
+
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500"
+                      >
+                        {showPassword ? <EyeOff size={20}/> : <Eye size={20}/>}
+                      </button>
 
             </div>
 
