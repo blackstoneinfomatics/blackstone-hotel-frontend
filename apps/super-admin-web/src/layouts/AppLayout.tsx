@@ -1,6 +1,7 @@
 "use client";
 
 import AuthGuard from "@/guards/AuthGuard";
+import { AuthProvider } from "@/providers/AuthProvider";
 // import Sidebar from "@/shared/components/Sidebar";
 // import Header from "@/shared/components/Header";
 
@@ -10,6 +11,7 @@ export default function AppLayout({
   children: React.ReactNode;
 }) {
   return (
+    <AuthProvider>
     <AuthGuard>
       <div className="flex">
         {/* <Sidebar /> */}
@@ -21,5 +23,6 @@ export default function AppLayout({
         </div>
       </div>
     </AuthGuard>
+    </AuthProvider>
   );
 }

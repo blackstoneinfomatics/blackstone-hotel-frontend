@@ -1,48 +1,17 @@
 "use client";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactNode, useState } from "react";
-import axios, { AxiosError } from "axios";
+import { QueryClientProvider } from "@tanstack/react-query";
 
-interface Props {
-  children: ReactNode;
-}
+import { queryClient } from "@/lib/react-query/query-client";
 
-export default function QueryProvider({ children }: Props) {
-  const [queryClient] = useState(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            retry: (failureCount, error) => {
-              if (axios.isAxiosError(error)) {
-                const status = error.response?.status;
-
-                if (status && status >= 400 && status < 500) {
-                  return false;
-                }
-              }
-
-              return failureCount < 2;
-            },
-
-            refetchOnWindowFocus: false,
-            refetchOnReconnect: true,
-            refetchOnMount: false,
-
-            staleTime: 5 * 60 * 1000,
-            gcTime: 10 * 60 * 1000,
-          },
-
-          mutations: {
-            // Never retry mutations globally
-            retry: false,
-          },
-        },
-      }),
-  );
-
+export default function QueryProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      {children}
+    </QueryClientProvider>
   );
 }

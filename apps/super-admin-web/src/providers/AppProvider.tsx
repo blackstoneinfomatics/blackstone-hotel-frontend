@@ -10,9 +10,7 @@ export function AppProvider({
 }) {
   return (
     <QueryProvider>
-      <AuthProvider>
         {children}
-      </AuthProvider>
     </QueryProvider>
   );
 }

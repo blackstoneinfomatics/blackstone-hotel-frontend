@@ -1,4 +1,4 @@
-import "@/lib/api";
+import "@/lib/auth/api";
 import type { Metadata } from "next";
 import { Hanken_Grotesk } from "next/font/google";
 import "./globals.css";

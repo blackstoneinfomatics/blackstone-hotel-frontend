@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 import { getPlatform } from "../../../utilities/device-platform";
 import "axios";
+import { sessionHandler } from "@/lib/auth";
 
 declare module "axios" {
   interface AxiosRequestConfig<D = any> {
@@ -43,10 +44,10 @@ export function setupRefreshInterceptor(api: AxiosInstance) {
         return Promise.reject(error);
       }
       console.log(
-  "Refresh Interceptor:",
-  originalRequest.url,
-  error.response?.status
-);
+        "Refresh Interceptor:",
+        originalRequest.url,
+        error.response?.status,
+      );
 
       /**
        * Ignore refresh request
@@ -97,10 +98,9 @@ export function setupRefreshInterceptor(api: AxiosInstance) {
       } catch (refreshError) {
         processQueue(refreshError);
 
-        localStorage.clear();
-        sessionStorage.clear();
-
-        window.location.href = "/login";
+        await sessionHandler.clearSession(
+          "Your session has expired. Please sign in again.",
+        );
 
         return Promise.reject(refreshError);
       } finally {

@@ -1,20 +1,12 @@
-import {
-  AxiosError,
-  AxiosInstance,
-} from "axios";
+import { AxiosError, AxiosInstance } from "axios";
 
 import { handleApiError } from "../utils/handle-api-error";
 
-export function setupErrorInterceptor(
-  api: AxiosInstance
-) {
-
+export function setupErrorInterceptor(api: AxiosInstance) {
   api.interceptors.response.use(
-
     (response) => response,
 
     (error: AxiosError) => {
-
       /**
        * Refresh interceptor
        * already handles 401
@@ -28,21 +20,18 @@ export function setupErrorInterceptor(
        * Network Error
        */
       console.log(
-  "Error Interceptor:",
-  error.config?.url,
-  error.response?.status
-);
+        "Error Interceptor:",
+        error.config?.url,
+        error.response?.status,
+      );
 
       if (!error.response) {
-
         handleApiError(error);
 
         return Promise.reject(error);
-
       }
 
       switch (error.response.status) {
-
         case 400:
         case 403:
         case 404:
@@ -51,21 +40,15 @@ export function setupErrorInterceptor(
         case 429:
         case 500:
         case 503:
-
           handleApiError(error);
 
           break;
 
         default:
-
           handleApiError(error);
-
       }
 
       return Promise.reject(error);
-
-    }
-
+    },
   );
-
 }

@@ -8,8 +8,8 @@ import {
   useState,
 } from "react";
 
-import { AuthInitializer } from "../lib/auth-initializer";
-import { authService } from "@/lib/api";
+import { AuthInitializer } from "../lib/auth/auth-initializer";
+import { authService } from "@/lib/auth/api";
 
 interface AuthContextType {
   loading: boolean;

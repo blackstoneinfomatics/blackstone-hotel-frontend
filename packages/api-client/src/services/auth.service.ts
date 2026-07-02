@@ -3,6 +3,7 @@ import { ApiClient } from "../client";
 
 import { getDeviceId } from "../../../utilities/device";
 import { getPlatform } from "../../../utilities/device-platform";
+import { sessionHandler } from "@/lib/auth";
 
 export interface LoginPayload {
   email: string;
@@ -34,7 +35,7 @@ export class AuthService {
       // ✅ Logout
   async logout() {
     const { data } = await this.authApi.logout();
-
+    await sessionHandler.clearSession();
     return data;
   }
 
