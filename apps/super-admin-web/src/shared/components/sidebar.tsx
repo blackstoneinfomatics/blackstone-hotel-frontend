@@ -70,16 +70,27 @@ export default function Sidebar({
       {/* Sidebar */}
 <aside
   className={`
-    fixed top-0 left-0 z-30
-    flex h-screen flex-col
-    bg-[#111827] text-white
-    transition-all duration-300
+    fixed top-0 left-0 z-50
+    h-screen
+    bg-[#111827]
+    text-white
+    flex flex-col
+    transition-all
+    duration-300
 
-    ${collapsed ? "w-28" : "w-62"}
+    w-72
 
-    ${open ? "translate-x-0" : "-translate-x-full"}
+    ${
+      open
+        ? "translate-x-0"
+        : "-translate-x-full lg:translate-x-0"
+    }
 
-    lg:translate-x-0
+    ${
+      collapsed
+        ? "lg:w-20"
+        : "lg:w-72"
+    }
   `}
 >
 

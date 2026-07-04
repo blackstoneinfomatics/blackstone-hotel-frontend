@@ -9,15 +9,16 @@ import {
   Package,
   ArrowUpRight,
   MoreHorizontal,
+  Menu,
 } from "lucide-react";
-
-import { Menu } from "lucide-react";
 
 interface DashboardProps {
   onMenuClick: () => void;
 }
 
-export default function Dashboard({ onMenuClick }: DashboardProps) {
+export default function Dashboard({
+  onMenuClick,
+}: DashboardProps) {
   return (
     <main className="flex-1 bg-slate-50 dark:bg-[#0F172A] min-h-screen">
 
@@ -25,27 +26,27 @@ export default function Dashboard({ onMenuClick }: DashboardProps) {
 <div className="flex flex-col gap-4 border-b border-slate-200 bg-white px-4 py-4 dark:border-white/10 dark:bg-[#111827] lg:flex-row lg:items-center lg:justify-between lg:px-8 lg:py-6">
 
   {/* Left */}
-  <div className="flex items-center gap-3">
+<div className="flex items-center gap-3">
 
-    {/* Mobile Menu */}
-    <button
-      onClick={onMenuClick}
-      className="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-slate-700 lg:hidden"
-    >
-      <Menu size={24} />
-    </button>
+  {/* Mobile Menu */}
+  <button
+    onClick={onMenuClick}
+    className="rounded-lg p-2 hover:bg-slate-100 dark:hover:bg-slate-700 lg:hidden"
+  >
+    <Menu size={24} />
+  </button>
 
-    <div>
-      <h1 className="text-2xl font-bold text-slate-800 dark:text-white lg:text-3xl">
-        Dashboard
-      </h1>
+  <div>
+    <h1 className="text-2xl font-bold text-slate-800 dark:text-white lg:text-3xl">
+      Dashboard
+    </h1>
 
-      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400 lg:text-base">
-        Welcome back! Heres whats happening today.
-      </p>
-    </div>
-
+    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400 lg:text-base">
+      Welcome back! Heres whats happening today.
+    </p>
   </div>
+
+</div>
 
   {/* Right */}
   <div className="flex flex-wrap items-center gap-3">
