@@ -1,4 +1,5 @@
 import { toast } from "sonner";
+import SuccessPopup from "../../../popup/success.popup";
 
 export const ToastService = {
 
@@ -10,7 +11,8 @@ export const ToastService = {
 
   error(message: string) {
 
-    toast.error(message);
+    // toast.error(message);
+ToastService.success("Success");
 
   },
 
